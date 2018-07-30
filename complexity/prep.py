@@ -11,6 +11,7 @@ before it actually happens.
 
 import os
 import shutil
+import logging
 
 from . import utils
 
@@ -33,7 +34,7 @@ def prompt_and_delete_cruft(output_dir):
         shutil.rmtree(output_dir)
         return True
     else:
-        print(
+        logging.error(
             "Aborting. Please manually remove {0} and retry."
             .format(output_dir)
         )

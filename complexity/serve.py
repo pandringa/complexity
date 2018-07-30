@@ -10,6 +10,7 @@ Functions for serving a static HTML website locally.
 
 import os
 import sys
+import logging
 
 
 PY3 = sys.version > '3'
@@ -35,11 +36,11 @@ def serve_static_site(output_dir, port=9090):
     socketserver.TCPServer.allow_reuse_address = True
 
     httpd = socketserver.TCPServer(("", port), Handler)
-    print("serving at port", port)
+    logging.info("serving at port", port)
 
     try:
         httpd.serve_forever()
     except (KeyboardInterrupt, SystemExit):
-        print("Shutting down...")
+        logging.info("Shutting down...")
         httpd.socket.close()
         sys.exit()

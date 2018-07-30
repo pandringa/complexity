@@ -138,7 +138,6 @@ def generate_html(templates_dir, output_dir, context=None,
 
     for root, dirs, files in os.walk(templates_dir):
         for f in files:
-            # print(f)
             template_filepath = os.path.relpath(
                 os.path.join(root, f),
                 templates_dir
@@ -152,12 +151,12 @@ def generate_html(templates_dir, output_dir, context=None,
             ))
 
             if is_binary(os.path.join(templates_dir, template_filepath)):
-                print('Non-text file found: {0}. Skipping.'.
+                logging.warning('Non-text file found: {0}. Skipping.'.
                       format(template_filepath))
             else:
                 outfile = get_output_filename(template_filepath, output_dir,
                                               force_unexpanded)
-                print('Copying {0} to {1}'.format(template_filepath, outfile))
+                logging.info('Copying {0} to {1}'.format(template_filepath, outfile))
                 generate_html_file(template_filepath, output_dir, env, context,
                                    force_unexpanded)
 
