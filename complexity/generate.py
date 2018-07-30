@@ -228,11 +228,11 @@ def copy_assets(assets_dir, output_dir):
         # Only copy allowed dirs
         if os.path.isdir(item_path) and item != 'scss' and item != 'less':
             new_dir = os.path.join(output_dir, item)
-            print('Copying directory {0} to {1}'.format(item, new_dir))
+            logging.info('Copying directory {0} to {1}'.format(item, new_dir))
             shutil.copytree(item_path, new_dir)
 
         # Copy over files in the root of assets_dir
         if os.path.isfile(item_path):
             new_file = os.path.join(output_dir, item)
-            print('Copying file {0} to {1}'.format(item, new_file))
+            logging.info('Copying file {0} to {1}'.format(item, new_file))
             shutil.copyfile(item_path, new_file)
